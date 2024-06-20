@@ -1,11 +1,10 @@
 #include <string.h>
 #include "encoder.h"
-#include "json.h"
 
 /**
  * {@inheritdoc}
  */
-int _encode_json(struct json* json_object, struct string_tokenizer* tokenizer) {
+int _encode_json(struct json* json_object, struct StringTokenizer* tokenizer) {
    if (json_object == NULL || tokenizer == NULL) {
       return 0;
    }
@@ -41,7 +40,7 @@ int _encode_json(struct json* json_object, struct string_tokenizer* tokenizer) {
 /**
  * {@inheritdoc}
  */
-int _encode_json_string(struct json* json_object, struct string_tokenizer* tokenizer) {
+int _encode_json_string(struct json* json_object, struct StringTokenizer* tokenizer) {
    if (json_object->type != JSON_string) {
       return 0;
    }
@@ -57,7 +56,7 @@ int _encode_json_string(struct json* json_object, struct string_tokenizer* token
 /**
  * {@inheritdoc}
  */
-int _encode_json_number(struct json* json_object, struct string_tokenizer* tokenizer) {
+int _encode_json_number(struct json* json_object, struct StringTokenizer* tokenizer) {
    if (json_object->type != JSON_number) {
       return 0;
    }
@@ -73,7 +72,7 @@ int _encode_json_number(struct json* json_object, struct string_tokenizer* token
 /**
  * {@inheritdoc}
  */
-int _encode_json_boolean(struct json* json_object, struct string_tokenizer* tokenizer) {
+int _encode_json_boolean(struct json* json_object, struct StringTokenizer* tokenizer) {
    if (json_object->type != JSON_boolean) {
       return 0;
    }
@@ -94,7 +93,7 @@ int _encode_json_boolean(struct json* json_object, struct string_tokenizer* toke
 /**
  * {@inheritdoc}
  */
-int _encode_json_null(struct json* json_object, struct string_tokenizer* tokenizer) {
+int _encode_json_null(struct json* json_object, struct StringTokenizer* tokenizer) {
    if (json_object->type != JSON_null) {
       return 0;
    }
@@ -105,7 +104,7 @@ int _encode_json_null(struct json* json_object, struct string_tokenizer* tokeniz
 /**
  * {@inheritdoc}
  */
-int _encode_json_array(struct json* json_object, struct string_tokenizer* tokenizer) {
+int _encode_json_array(struct json* json_object, struct StringTokenizer* tokenizer) {
    if (json_object->type != JSON_array) {
       return 0;
    }
@@ -138,7 +137,7 @@ int _encode_json_array(struct json* json_object, struct string_tokenizer* tokeni
 /**
  * {@inheritdoc}
  */
-int _encode_json_object(struct json* json_object, struct string_tokenizer* tokenizer) {
+int _encode_json_object(struct json* json_object, struct StringTokenizer* tokenizer) {
    if (json_object->type != JSON_object) {
       return 0;
    }

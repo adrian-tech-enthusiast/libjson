@@ -1,10 +1,9 @@
 #include "decoder.h"
-#include "json.h"
 
 /**
  * {@inheritdoc}
  */
-struct json* _decode_json(struct string_tokenizer* tokenizer) {
+struct json* _decode_json(struct StringTokenizer *tokenizer) {
    // Get the current token in the tokenizer.
    const char token = st_current_token(tokenizer);
    // Decodes the token based on the different types of JSON values.
@@ -39,7 +38,7 @@ struct json* _decode_json(struct string_tokenizer* tokenizer) {
 /**
  * {@inheritdoc}
  */
-struct json* _decode_json_string(struct string_tokenizer* tokenizer) {
+struct json* _decode_json_string(struct StringTokenizer *tokenizer) {
    // Get the substring between the double quotes.
    char* value = st_sub_string(tokenizer, '\"', '\"');
    if (value == NULL) {
@@ -57,7 +56,7 @@ struct json* _decode_json_string(struct string_tokenizer* tokenizer) {
 /**
  * {@inheritdoc}
  */
-struct json* _decode_json_boolean(struct string_tokenizer* tokenizer) {
+struct json* _decode_json_boolean(struct StringTokenizer *tokenizer) {
    // Get the current token in the tokenizer.
    const char token = st_current_token(tokenizer);
    // Declare the bool value as int.
@@ -90,7 +89,7 @@ struct json* _decode_json_boolean(struct string_tokenizer* tokenizer) {
 /**
  * {@inheritdoc}
  */
-struct json* _decode_json_null(struct string_tokenizer* tokenizer) {
+struct json* _decode_json_null(struct StringTokenizer *tokenizer) {
    // Search for the null string.
    if (st_starts_with(tokenizer, "null") == 0) {
       // Not a null token.
@@ -103,7 +102,7 @@ struct json* _decode_json_null(struct string_tokenizer* tokenizer) {
 /**
  * {@inheritdoc}
  */
-struct json* _decode_json_number(struct string_tokenizer* tokenizer) {
+struct json* _decode_json_number(struct StringTokenizer *tokenizer) {
    // Extract double value from string.
    double* value = st_extract_double(tokenizer);
    if (value == NULL) {
@@ -121,7 +120,7 @@ struct json* _decode_json_number(struct string_tokenizer* tokenizer) {
 /**
  * {@inheritdoc}
  */
-struct json* _decode_json_array(struct string_tokenizer* tokenizer) {
+struct json* _decode_json_array(struct StringTokenizer *tokenizer) {
    // Get the current token in the tokenizer.
    char token = st_current_token(tokenizer);
    // Check the start of the array.
@@ -172,7 +171,7 @@ struct json* _decode_json_array(struct string_tokenizer* tokenizer) {
 /**
  * {@inheritdoc}
  */
-struct json* _decode_json_object(struct string_tokenizer* tokenizer) {
+struct json* _decode_json_object(struct StringTokenizer *tokenizer) {
    // Get the current token in the tokenizer.
    char token = st_current_token(tokenizer);
    // Check the start of the object.

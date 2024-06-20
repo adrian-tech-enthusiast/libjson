@@ -1,7 +1,7 @@
 #ifndef JSON_SAVE_H
 #define JSON_SAVE_H
 
-#include "json.h"
+#include "../include/json.h"
 
 /**
  * Saves the given JSON object to the given file path.
@@ -16,4 +16,4 @@
  */
 int json_save(struct json* json_object, const char* filepath);
 
-#endif
+#endif /* JSON_SAVE_H */

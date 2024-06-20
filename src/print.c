@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <strutils.h>
 #include "print.h"
-#include "../string/tokenizer.h"
 
 /**
  * {@inheritdoc}
  */
 void json_string_print(const char* json_string) {
    // Init the String Tokenizer instance.
-   struct string_tokenizer* tokenizer = st_create((char*)json_string);
+   struct StringTokenizer *tokenizer = st_create((char*)json_string);
    if (tokenizer == NULL) {
       return;
    }

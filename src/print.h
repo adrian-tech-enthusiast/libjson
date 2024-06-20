@@ -1,7 +1,7 @@
 #ifndef JSON_PRINT_H
 #define JSON_PRINT_H
 
-#include "json.h"
+#include "../include/json.h"
 
 /**
  * Prints a JSON string.
@@ -19,4 +19,4 @@ void json_string_print(const char* json_string);
  */
 void json_object_print(struct json* object);
 
-#endif
+#endif /* JSON_PRINT_H */

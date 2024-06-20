@@ -1,7 +1,7 @@
 #include <stdlib.h>
-#include "json.h"
 #include "decoder.h"
 #include "encoder.h"
+#include "../include/json.h"
 
 /**
  * {@inheritdoc}
@@ -51,7 +51,7 @@ void json_destroy(struct json* object) {
  */
 struct json* json_decode(const char* json_string) {
    // Init the String Tokenizer instance.
-   struct string_tokenizer* tokenizer = st_create((char*)json_string);
+   struct StringTokenizer *tokenizer = st_create((char*)json_string);
    if (tokenizer == NULL) {
       return NULL;
    }
@@ -68,7 +68,7 @@ struct json* json_decode(const char* json_string) {
  */
 char* json_encode(struct json* object) {
    // Init the String Tokenizer instance.
-   struct string_tokenizer* tokenizer = st_create_empty(100);
+   struct StringTokenizer *tokenizer = st_create_empty(100);
    if (tokenizer == NULL) {
       return NULL;
    }

@@ -1,7 +1,7 @@
 #ifndef JSON_OPEN_H
 #define JSON_OPEN_H
 
-#include "json.h"
+#include "../include/json.h"
 
 /**
  * Reads the given JSON file path and decodes its contents.
@@ -14,4 +14,4 @@
  */
 struct json* json_open(const char* filepath);
 
-#endif
+#endif /* JSON_OPEN_H */

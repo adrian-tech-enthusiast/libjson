@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
-#include "iterator.h"
-#include "../string/itos.h"
+#include <strutils.h>
+#include "../include/json.h"
 
 /**
  * {@inheritdoc}

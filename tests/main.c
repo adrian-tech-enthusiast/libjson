@@ -1,9 +1,7 @@
+#include <stdio.h>
 #include <stdlib.h>
-#include "sigmoid_unit_tests.h"
-#include "tanh_unit_tests.h"
-#include "relu_unit_tests.h"
-#include "softmax_unit_tests.h"
-#include "identity_unit_tests.h"
+#include "json_decode_unit_tests.h"
+#include "json_encode_unit_tests.h"
 
 /**
  * Main Unit Testing controller function.
@@ -17,26 +15,17 @@
  *   The constant that represent the exit status.
  */
 int main(int argc, char const *argv[]) {
-  if (run_sigmoid_unit_tests() == EXIT_FAILURE) {
+  printf("------------------------------ Unit Test: json_decode() ------------------------------\n");
+  if (run_json_decode_unit_tests() == EXIT_FAILURE) {
     // Unit tests failed.
     return EXIT_FAILURE;
   }
-  if (run_tanh_unit_tests() == EXIT_FAILURE) {
+  printf("\n------------------------------ Unit Test: json_encode() ------------------------------\n");
+  if (run_json_encode_unit_tests() == EXIT_FAILURE) {
     // Unit tests failed.
     return EXIT_FAILURE;
   }
-  if (run_softmax_unit_tests() == EXIT_FAILURE) {
-    // Unit tests failed.
-    return EXIT_FAILURE;
-  }
-  if (run_relu_unit_tests() == EXIT_FAILURE) {
-    // Unit tests failed.
-    return EXIT_FAILURE;
-  }
-  if (run_identity_unit_tests() == EXIT_FAILURE) {
-    // Unit tests failed.
-    return EXIT_FAILURE;
-  }
+  printf("\n");
   // Unit tests succeeded.
   return EXIT_SUCCESS;
 }

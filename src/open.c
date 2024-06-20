@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "json.h"
-#include "../file/file_get_contents.h"
+#include <filehelper.h>
+#include "open.h"
 
 /**
  * {@inheritdoc}

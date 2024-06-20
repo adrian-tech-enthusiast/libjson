@@ -16,7 +16,7 @@ enum JSONDataType {
 };
 
 /**
- * The data struct definition for an individual JSON object gate.
+ * The data struct definition for an individual JSON object.
  */
 struct json {
 
@@ -45,7 +45,7 @@ struct json {
     *
     * @var struct json* type.
     */
-   int type;
+   enum JSONDataType type;
 
    /**
     * The key for the current entry/node.
@@ -62,6 +62,19 @@ struct json {
    void* value;
 
 };
+
+/*
+ * Create a new JSON object instance.
+ *
+ * @param enum JSONDataType type
+ *   The Supported JSON Data Type.
+ * @param void* value
+ *   The pointer value.
+ *
+ * @return struct json*
+ *   The pointer to the json instance, otherwise NULL.
+ */
+struct json* json_create(enum JSONDataType type, void* value);
 
 /**
  * Takes a JSON encoded string and converts it into a JSON object.
@@ -85,25 +98,151 @@ struct json* json_decode(const char* json_string);
  */
 char* json_encode(struct json* object);
 
-/*
- * Create a new JSON object instance.
- *
- * @param enum JSONDataType type
- *   The Supported JSON Data Type.
- * @param void* value
- *   The pointer value.
- *
- * @return struct json*
- *   The pointer to the json instance, otherwise NULL.
- */
-struct json* json_create(enum JSONDataType type, void* value);
-
 /**
  * Free the memory associted to a JSON object.
  *
  * @param struct json* object
- *   The JSON object to be clean.
+ *   The JSON object to be cleaned.
  */
 void json_destroy(struct json* object);
 
-#endif
+#endif /* JSON_H */
+
+#ifndef JSON_ITERATOR_H
+#define JSON_ITERATOR_H
+
+/**
+ * Find node in the given JSON object.
+ *
+ * @param struct json* object
+ *   The JSON object to search.
+ * @param const char* path
+ *   The path to find the node.
+ * @param const char delimiter
+ *   The path delimiter.
+ *
+ * @return struct json*
+ *   The pointer to the JSON node object, if found; otherwise NULL.
+ */
+struct json* json_find_node(struct json* object, const char* path, const char delimiter);
+
+/**
+ * Find node by index in the given JSON object.
+ *
+ * @param struct json* object
+ *   The JSON object to search.
+ * @param const int index
+ *   The index to search.
+ *
+ * @return struct json*
+ *   The pointer to the JSON node object, if found; otherwise NULL.
+ */
+struct json* json_find_node_by_index(struct json* object, const int index);
+
+#endif /* JSON_ITERATOR_H */
+
+#ifndef JSON_BUILDER_H
+#define JSON_BUILDER_H
+
+/**
+ * Create a JSON string instance.
+ *
+ * @param const char* string
+ *   The object string value.
+ *
+ * @return struct json*
+ *   Returns the JSON string instance; otherwise, NULL.
+ */
+struct json* json_string(const char* string);
+
+/**
+ * Create a JSON number instance.
+ *
+ * @param const double number
+ *   The object number value.
+ *
+ * @return struct json*
+ *   Returns the JSON number instance; otherwise, NULL.
+ */
+struct json* json_number(const double number);
+
+/**
+ * Create a JSON boolean instance.
+ *
+ * @param const int bool_value
+ *   The boolean value as int.
+ *
+ * @return struct json*
+ *   Returns the JSON boolean instance; otherwise, NULL.
+ */
+struct json* json_bool(const int bool_value);
+
+/**
+ * Create a JSON null instance.
+ *
+ * @return struct json*
+ *   Returns the JSON null instance; otherwise, NULL.
+ */
+struct json* json_null();
+
+/**
+ * Create a JSON object instance.
+ *
+ * @param const char* key
+ *   The object key.
+ * @param void* value
+ *   The object key.
+ *
+ * @return struct json*
+ *   Returns the JSON object instance; otherwise, NULL.
+ */
+struct json* json_object(const char* key, void* value);
+
+/**
+ * Create a JSON string object instance.
+ *
+ * @param const char* key
+ *   The object key.
+ * @param const char* string
+ *   The object string value.
+ *
+ * @return struct json*
+ *   Returns the JSON object instance; otherwise, NULL.
+ */
+struct json* json_object_string(const char* key, const char* string);
+
+/**
+ * Create a JSON number object instance.
+ *
+ * @param const char* key
+ *   The object key.
+ * @param const double number
+ *   The object number value.
+ *
+ * @return struct json*
+ *   Returns the JSON object instance; otherwise, NULL.
+ */
+struct json* json_object_number(const char* key, const double number);
+
+/**
+ * Create a JSON array instance.
+ *
+ * @return struct json*
+ *   Returns the JSON array instance; otherwise, NULL.
+ */
+struct json* json_array();
+
+/**
+ * Add the the given child JSON element onto the container JSON.
+ *
+ * @param struct json* container
+ *   The container JSON intance.
+ * @param struct json* child
+ *   The child JSON intance.
+ *
+ * @return struct json*
+ *   Returns the JSON object instance; otherwise, NULL.
+ */
+void json_push(struct json* container, struct json* child);
+
+#endif /* JSON_BUILDER_H */
