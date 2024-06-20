@@ -26,16 +26,16 @@ if ! [ -f /usr/local/lib/libstr.so ]; then
   echo "Installing libstr.so";
   sudo curl -L "https://github.com/adrian-tech-enthusiast/libstr/releases/download/v1.0.1/libstr.so" -o /usr/local/lib/libstr.so;
   sudo ldconfig;
-  ldconfig -p | grep matrixmath;
-  sudo curl -L "https://raw.githubusercontent.com/adrian-tech-enthusiast/libstr/v1.0.1/include/matrixmath.h" -o /usr/local/include/matrixmath.h;
+  ldconfig -p | grep str;
+  sudo curl -L "https://raw.githubusercontent.com/adrian-tech-enthusiast/libstr/v1.0.1/include/strutils.h" -o /usr/local/include/strutils.h;
 fi
 
 if ! [ -f /usr/local/lib/libfile.so ]; then
   echo "Installing libfile.so";
   sudo curl -L "https://github.com/adrian-tech-enthusiast/libfile/releases/download/v1.0.0/libfile.so" -o /usr/local/lib/libfile.so
   sudo ldconfig;
-  ldconfig -p | grep activation;
-  sudo curl -L "https://raw.githubusercontent.com/adrian-tech-enthusiast/libfile/v1.0.0/include/activation.h" -o /usr/local/include/activation.h;
+  ldconfig -p | grep file;
+  sudo curl -L "https://raw.githubusercontent.com/adrian-tech-enthusiast/libfile/v1.0.0/include/filehelper.h" -o /usr/local/include/filehelper.h;
 fi
 
 # Build the project.
