@@ -51,13 +51,8 @@ BIN_PATH="$PROJECT_PATH/bin";
 APP_NAME="$BASE_NAME.app";
 
 # Ensure that library dependencies are installed on the local system.
-if ! [ -f /usr/local/lib/libstr.so ]; then
-  # Install 'libstr' library dependency locally from remote(Github repo).
-  sudo install_library_from_remote "adrian-tech-enthusiast" "libstr" "v1.0.1" "libstr.so" "strutils.h";
-fi
-if ! [ -f /usr/local/lib/libfile.so ]; then
-  # Install 'libfile' library dependency locally from remote(Github repo).
-  sudo install_library_from_remote "adrian-tech-enthusiast" "libfile" "v1.0.0" "libfile.so" "filehelper.h";
+if ! [ -f /usr/local/lib/libstr.so ] || ! [ -f /usr/local/lib/libfile.so ]; then
+  sudo "$SCRIPT_DIR/install_from_remote.sh";
 fi
 
 # Clean up build directory before start the build.

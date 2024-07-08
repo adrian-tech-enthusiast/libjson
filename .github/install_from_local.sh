@@ -8,9 +8,9 @@
 # functions from "helper.sh" to perform these tasks.
 
 
-# Determine the directory of the script
+# Determine the directory of the script.
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")");
-# Load helper functions
+# Load helper functions.
 source "$SCRIPT_DIR/helper.sh";
 
 # Global Settings.
