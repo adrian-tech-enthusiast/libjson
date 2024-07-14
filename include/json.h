@@ -249,6 +249,21 @@ struct json *json_object_string(const char *key, const char *string);
 struct json *json_object_number(const char *key, const double number);
 
 /**
+ * Creates a JSON number string object instance.
+ *
+ * This function creates a JSON object that represents a key-value pair where the value is a number string.
+ *
+ * @param const char* key
+ *   The key for the JSON object.
+ * @param const double number
+ *   The numeric value for the JSON object.
+ *
+ * @return struct json*
+ *   Returns a pointer to the created JSON object instance on success, or NULL on failure.
+ */
+struct json *json_object_number_string(const char *key, const double number);
+
+/**
  * Create a JSON array instance.
  *
  * @return struct json*

@@ -146,6 +146,19 @@ struct json *json_object_number(const char *key, const double number) {
 /**
  * {@inheritdoc}
  */
+struct json *json_object_number_string(const char *key, const double number) {
+  // Convert the number to a string representation.
+  char *value_string = ldtos(number);
+  if (value_string == NULL) {
+    return NULL;
+  }
+  // Create a JSON string object instance.
+  return json_object_string(key, value_string);
+}
+
+/**
+ * {@inheritdoc}
+ */
 void json_push(struct json *container, struct json *child) {
   if (container->value == NULL) {
     container->value = child;
