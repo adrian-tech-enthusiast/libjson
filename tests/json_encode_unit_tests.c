@@ -159,6 +159,43 @@ int run_json_encode_unit_tests_d() {
   return result;
 }
 
+int run_json_encode_unit_tests_e() {
+  // Create the following JSON object:
+  // {
+  //   "name": "John",
+  //   "age": 30,
+  //   "city": "New York"
+  // }
+  struct json *jobject = json_empty_object();
+  if (jobject == NULL) {
+    fprintf(stderr, "Failed to create JSON object.\n");
+    return EXIT_FAILURE;
+  }
+
+  // Add properties to the jobject object.
+  json_push(jobject, json_object_string("name", "John"));
+  json_push(jobject, json_object_number("age", 30));
+  json_push(jobject, json_object_string("city", "New York"));
+
+  // Encode the jobject JSON object.
+  char expected_json_string[] = "{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}";
+  char *encoded_json_string = json_encode(jobject);
+  if (encoded_json_string == NULL) {
+    fprintf(stderr, "Failed to encode JSON object.\n");
+    json_destroy(jobject);
+    return EXIT_FAILURE;
+  }
+
+  // Compare the encoded JSON string with the expected JSON string.
+  int result = run_json_encode_compare(expected_json_string, encoded_json_string);
+
+  // Clean up allocated memory.
+  free(encoded_json_string);
+  json_destroy(jobject);
+
+  return result;
+}
+
 /**
  * {@inheritdoc}
  */
@@ -173,6 +210,9 @@ int run_json_encode_unit_tests() {
     return EXIT_FAILURE;
   }
   if (run_json_encode_unit_tests_d() == EXIT_FAILURE) {
+    return EXIT_FAILURE;
+  }
+  if (run_json_encode_unit_tests_e() == EXIT_FAILURE) {
     return EXIT_FAILURE;
   }
   return EXIT_SUCCESS;

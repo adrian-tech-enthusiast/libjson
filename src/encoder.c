@@ -138,41 +138,48 @@ int _encode_json_array(struct json *json_object, struct StringTokenizer *tokeniz
  * {@inheritdoc}
  */
 int _encode_json_object(struct json *json_object, struct StringTokenizer *tokenizer) {
+  // Ensure the input JSON object is of type JSON_object.
   if (json_object->type != JSON_object) {
     return 0;
   }
-  // Append the start object token.
+  // Append the start object token '{'.
   if (st_append_string(tokenizer, "{") == 0) {
     return 0;
   }
-  // Loop through the comma separated array elements.
+  // Initialize the pointer to iterate through the JSON object's elements.
   struct json *current = json_object;
+  // Move the cursor to the next non-empty key, if the current key is NULL.
+  if (current->key == NULL && current->value != NULL) {
+    current = current->value;
+  }
+  // Iterate through each key-value pair in the JSON object.
   do {
+    // Check if both key and value are non-NULL before processing.
     if (current->key != NULL && current->value != NULL) {
-      // Append the key.
+      // Append the key enclosed in quotes.
       if (st_append_quoted_string(tokenizer, current->key) == 0) {
         return 0;
       }
-      // Append the colon (:) token.
+      // Append the colon token ':' to separate key and value.
       if (st_append_string(tokenizer, ":") == 0) {
         return 0;
       }
-      // Append the value.
+      // Append the encoded value.
       if (_encode_json(current->value, tokenizer) == 0) {
         return 0;
       }
     }
-    // Append comma(if there is a next sibling).
+    // Append a comma ',' if there is a next sibling element.
     if (current->next != NULL && st_append_string(tokenizer, ",") == 0) {
       return 0;
     }
     // Move forward to the next sibling object.
     current = current->next;
   } while (current != NULL);
-  // Append the end object token.
+  // Append the end object token '}'.
   if (st_append_string(tokenizer, "}") == 0) {
     return 0;
   }
-  // JSON object encoding completed.
+  // JSON object encoding completed successfully.
   return 1;
 }
