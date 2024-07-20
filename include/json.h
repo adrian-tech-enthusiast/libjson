@@ -105,6 +105,18 @@ char *json_encode(struct json *object);
  */
 void json_destroy(struct json *object);
 
+/**
+ * Frees the memory associated with multiple JSON objects.
+ *
+ * This function deallocates memory used by an array of JSON objects and their contents.
+ *
+ * @param struct json** items
+ *   An array of pointers to JSON objects to be destroyed.
+ * @param int size
+ *   The number of JSON objects in the array.
+ */
+void json_destroy_multiple(struct json **items, int size);
+
 #endif /* JSON_H */
 
 #ifndef JSON_ITERATOR_H
@@ -283,5 +295,22 @@ struct json *json_array();
  *   Returns the JSON object instance; otherwise, NULL.
  */
 void json_push(struct json *container, struct json *child);
+
+/**
+ * Adds multiple JSON items to a container JSON object.
+ *
+ * This function adds an array of JSON objects as children to a specified container JSON object.
+ *
+ * @param struct json* container
+ *   The container JSON object to which the items will be added.
+ * @param struct json** items
+ *   An array of pointers to JSON objects to be added.
+ * @param int size
+ *   The number of JSON objects in the array.
+ *
+ * @return int
+ *   Returns 0 if all items were successfully added; otherwise, returns 1 if any addition failed.
+ */
+int json_push_multiple(struct json *container, struct json **items, int size);
 
 #endif /* JSON_BUILDER_H */

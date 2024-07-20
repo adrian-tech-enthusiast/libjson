@@ -174,3 +174,19 @@ void json_push(struct json *container, struct json *child) {
   iterator->next = child;
   child->prev = iterator;
 }
+
+/**
+ * {@inheritdoc}
+ */
+int json_push_multiple(struct json *container, struct json **items, int size) {
+  if (container == NULL || items == NULL) {
+    return 1;
+  }
+  for (int i = 0; i < size; ++i) {
+    if (items[i] == NULL) {
+      return 1;
+    }
+    json_push(container, items[i]);
+  }
+  return 0;
+}
