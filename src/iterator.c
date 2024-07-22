@@ -67,3 +67,70 @@ struct json* json_find_node_by_index(struct json* object, const int index) {
    // Return the JSON node.
    return node;
 }
+
+/**
+ * {@inheritdoc}
+ */
+double json_value_to_double(void *value) {
+  double *value_d = (double *)value;
+  return *value_d;
+}
+
+/**
+ * {@inheritdoc}
+ */
+int json_number_value_to_int(void *value) {
+  double value_d = json_value_to_double(value);
+  return (int)value_d;
+}
+
+/**
+ * {@inheritdoc}
+ */
+long double json_number_string_value_to_long_double(void *value) {
+  return stold(value);
+}
+
+/**
+ * {@inheritdoc}
+ */
+struct json *json_get_array(struct json *json_object, const char *path) {
+  struct json *node = json_find_node(json_object, path, '.');
+  if (node == NULL || node->value == NULL || node->type != JSON_array) {
+    return NULL;
+  }
+  return node;
+}
+
+/**
+ * {@inheritdoc}
+ */
+struct json *json_get_object(struct json *json_object, const char *path) {
+  struct json *node = json_find_node(json_object, path, '.');
+  if (node == NULL || node->value == NULL || node->type != JSON_object) {
+    return NULL;
+  }
+  return node;
+}
+
+/**
+ * {@inheritdoc}
+ */
+void *json_get_number(struct json *json_object, const char *path) {
+  struct json *node = json_find_node(json_object, path, '.');
+  if (node == NULL || node->value == NULL || node->type != JSON_number) {
+    return NULL;
+  }
+  return node->value;
+}
+
+/**
+ * {@inheritdoc}
+ */
+void *json_get_number_string(struct json *json_object, const char *path) {
+  struct json *node = json_find_node(json_object, path, '.');
+  if (node == NULL || node->value == NULL || node->type != JSON_string) {
+    return NULL;
+  }
+  return node->value;
+}

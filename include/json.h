@@ -150,6 +150,111 @@ struct json *json_find_node(struct json *object, const char *path, const char de
  */
 struct json *json_find_node_by_index(struct json *object, const int index);
 
+/**
+ * Converts a JSON value to a double.
+ *
+ * This function assumes that the JSON value is stored as a double. It performs
+ * a type cast to retrieve the double value.
+ *
+ * @param void *value
+ *   Pointer to the JSON value, which should be stored as a double.
+ *
+ * @return double
+ *   The double value extracted from the JSON value.
+ */
+double json_value_to_double(void *value);
+
+/**
+ * Converts a JSON number value to an integer.
+ *
+ * This function converts the JSON number (stored as a double) to an integer.
+ *
+ * @param void *value
+ *   Pointer to the JSON value, which should be a number stored as a double.
+ *
+ * @return int
+ *   The integer value obtained by casting the double value.
+ */
+int json_number_value_to_int(void *value);
+
+/**
+ * Converts a JSON number string value to a long double.
+ *
+ * This function converts the numeric string in the JSON value to a long double.
+ *
+ * @param void *value
+ *   Pointer to the JSON value, which should be a numeric string.
+ *
+ * @return long double
+ *   The long double value parsed from the numeric string.
+ */
+long double json_number_string_value_to_long_double(void *value);
+
+/**
+ * Retrieves an array from a JSON object based on the specified path.
+ *
+ * This function finds a JSON node at the given path and retrieves it if it
+ * is of type JSON_array.
+ *
+ * @param struct json *json_object
+ *   Pointer to the JSON object from which to retrieve the array.
+ * @param const char *path
+ *   Path to the JSON node.
+ *
+ * @return struct json*
+ *   Pointer to the JSON array if found and of type JSON_array, otherwise NULL.
+ */
+struct json *json_get_array(struct json *json_object, const char *path);
+
+/**
+ * Retrieves an object from a JSON object based on the specified path.
+ *
+ * This function searches for a JSON node at the specified path and returns
+ * it if it is of type JSON_object. If the node does not exist or is not
+ * an object, the function returns NULL.
+ *
+ * @param struct json *json_object
+ *   Pointer to the JSON object from which the JSON object is to be retrieved.
+ * @param const char *path
+ *   The path to the JSON node to be retrieved.
+ *
+ * @return struct json*
+ *   Pointer to the JSON object if found and of type JSON_object, otherwise NULL.
+ */
+struct json *json_get_object(struct json *json_object, const char *path);
+
+/**
+ * Retrieves a numeric value from a JSON object based on the specified path.
+ *
+ * This function finds a JSON node at the given path and retrieves its value if
+ * it is of type JSON_number.
+ *
+ * @param struct json *json_object
+ *   Pointer to the JSON object from which to retrieve the value.
+ * @param const char *path
+ *   Path to the JSON node.
+ *
+ * @return void*
+ *   Pointer to the JSON value if found and of type JSON_number, otherwise NULL.
+ */
+void *json_get_number(struct json *json_object, const char *path);
+
+/**
+ * Retrieves a numeric string value from a JSON object based on the specified path.
+ *
+ * This function finds a JSON node at the given path and retrieves its value if
+ * it is of type JSON_string.
+ *
+ * @param struct json *json_object
+ *   Pointer to the JSON object from which to retrieve the value.
+ * @param const char *path
+ *   Path to the JSON node.
+ *
+ * @return void*
+ *   Pointer to the JSON value if found and of type JSON_string, otherwise NULL.
+ */
+void *json_get_number_string(struct json *json_object, const char *path);
+
 #endif /* JSON_ITERATOR_H */
 
 #ifndef JSON_BUILDER_H
