@@ -14,19 +14,19 @@ LibJSON is a powerful C library designed for efficient manipulation of JSON obje
 
 Before installing LibJSON, ensure you have the following libraries installed:
 
-1. [**Lib Strutils (libstr)**](https://github.com/adrian-tech-enthusiast/libstr?tab=readme-ov-file#installation) [v1.0.1](https://github.com/adrian-tech-enthusiast/libstr/releases/tag/v1.0.1) or later - Offers a robust collection of functions designed for efficient manipulation of character arrays.
-2. [**Lib File (Lib)**](https://github.com/adrian-tech-enthusiast/libfile?tab=readme-ov-file#installation) [v1.0.0](https://github.com/adrian-tech-enthusiast/libfile/releases/tag/v1.0.0) or later - provides easy-to-use helper functions for file operations.
+1. [**Lib Strutils (libstr)**](https://github.com/adrian-tech-enthusiast/libstr?tab=readme-ov-file#installation) [v1.1.0](https://github.com/adrian-tech-enthusiast/libstr/releases/tag/v1.1.0) or later - Offers a robust collection of functions designed for efficient manipulation of character arrays.
+2. [**Lib File (Lib)**](https://github.com/adrian-tech-enthusiast/libfile?tab=readme-ov-file#installation) [v1.0.1](https://github.com/adrian-tech-enthusiast/libfile/releases/tag/v1.0.1) or later - provides easy-to-use helper functions for file operations.
 
 ### Installation
 
 To install LibJSON, follow these steps:
 
-1. Check the latest stable version on the [releases page](https://github.com/adrian-tech-enthusiast/libjson/releases). At the time of writing, the current stable version is 1.0.0.
+1. Check the latest stable version on the [releases page](https://github.com/adrian-tech-enthusiast/libjson/releases). At the time of writing, the current stable version is 1.1.0.
 
 2. Download the shared library (`libjson.so` for Unix/Linux) to `/usr/local/lib`:
 
     ```bash
-    sudo curl -L "https://github.com/adrian-tech-enthusiast/libjson/releases/download/v1.0.0/libjson.so" -o /usr/local/lib/libjson.so
+    sudo curl -L "https://github.com/adrian-tech-enthusiast/libjson/releases/download/v1.1.0/libjson.so" -o /usr/local/lib/libjson.so
     ```
 
 3. Update the system's dynamic loader cache:
@@ -38,7 +38,7 @@ To install LibJSON, follow these steps:
 4. Download the library header file (`json.h`) to `/usr/local/include`:
 
     ```bash
-    sudo curl -L "https://raw.githubusercontent.com/adrian-tech-enthusiast/libjson/v1.0.0/include/json.h" -o /usr/local/include/json.h
+    sudo curl -L "https://raw.githubusercontent.com/adrian-tech-enthusiast/libjson/v1.1.0/include/json.h" -o /usr/local/include/json.h
     ```
 
 5. Include `json.h` in your C project:

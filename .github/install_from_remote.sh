@@ -16,10 +16,10 @@ source "$SCRIPT_DIR/helper.sh";
 # Ensure that library dependencies are installed on the local system.
 install_dependencies_from_remote() {
    # Install 'libstr' library dependency locally from remote(Github repo).
-   install_library_from_remote "adrian-tech-enthusiast" "libstr" "v1.0.1" "libstr.so" "strutils.h";
+   install_library_from_remote "adrian-tech-enthusiast" "libstr" "v1.1.0" "libstr.so" "strutils.h";
 
    # Install 'libfile' library dependency locally from remote(Github repo).
-   install_library_from_remote "adrian-tech-enthusiast" "libfile" "v1.0.0" "libfile.so" "filehelper.h";
+   install_library_from_remote "adrian-tech-enthusiast" "libfile" "v1.0.1" "libfile.so" "filehelper.h";
 }
 
 # Call the function.
